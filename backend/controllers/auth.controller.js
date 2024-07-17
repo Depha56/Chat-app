@@ -4,6 +4,7 @@ import generateTokenAndSetCookies from "../utils/generateToken.js";
 export const signup = async (req, res) => {
   try {
     const { fullName, username, password, confirmPassword, gender } = req.body;
+    //console.log(req.body);
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "password doesnt match" });
     }
@@ -78,10 +79,10 @@ export const login = async (req, res) => {
 };
 export const logout = (req, res) => {
 try{
-    res.clearCookie("token");
-    res.status(200).json({message: "user logged out successfully"});
-//     or res.cookies("jwt","",{maxAge:0});
-//     //or res.status(200).json({message: "user logged out successfully"});
+    // res.clearCookie("token");
+    // res.status(200).json({message: "user logged out successfully"});
+    res.cookies("jwt","",{maxAge:0});
+     res.status(200).json({message: "user logged out successfully"});
  }
  catch(error){
     console.error(error);
